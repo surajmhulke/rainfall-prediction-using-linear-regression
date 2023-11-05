@@ -20,7 +20,7 @@ This project aims to analyze historical rainfall data in India to understand rai
 
 We start by importing the necessary Python libraries for data analysis and model development.
 
- 
+```python
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -29,33 +29,34 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 from sklearn import metrics
 from sklearn.svm import SVC
- 
+```
 
 ## Importing Dataset
 
 We load the rainfall data for India from a CSV file to begin our analysis.
 
- 
+```python
 data = pd.read_csv('/content/rainfall_in_india_1901-2015.csv')
 data.head()
- 
+```
 
 ## Exploratory Data Analysis (EDA)
 
 We explore the dataset to understand its structure and characteristics.
 
- 
+```python
 data.info()
- 
+```
 
 This code snippet provides information about the dataset, including the number of entries, columns, data types, and non-null counts.
 
 ## Feature Engineering
 
 We perform feature engineering, which includes data cleaning and handling of missing values.
- 
+
+```python
 data.dropna(inplace=True)
- 
+```
 
 This code snippet removes rows with missing values in the dataset to ensure data quality.
 
@@ -63,7 +64,7 @@ This code snippet removes rows with missing values in the dataset to ensure data
 
 We build and evaluate a Linear Regression model to predict annual rainfall.
 
- 
+```python
 telangana = data.loc[data['SUBDIVISION'] == 'TELANGANA']
 x = telangana['YEAR']
 x.drop(columns=['YEAR'])
@@ -74,20 +75,21 @@ model = LinearRegression()
 x = np.array(x).reshape(-1, 1)
 y = np.array(y).reshape(-1, 1)
 model.fit(x, y)
- 
+```
+
 This code section loads data for the Telangana subdivision, prepares the input features (`x`), and the target variable (`y`). It then fits a Linear Regression model to predict annual rainfall.
- 
+
+```python
 b = model.intercept_
 m = model.coef_
 plt.scatter(x, y)
 plt.scatter(x, m*x+b)
 plt.plot()
- 
+```
 
 This code snippet calculates the intercept and coefficient for the Linear Regression model and plots a scatter plot of the data points with the regression line.
 
 ## Conclusion
 
 In conclusion, this project involved the analysis of historical rainfall data in India. We explored data, performed feature engineering, and developed a Linear Regression model to predict annual rainfall. This model can be used to make predictions and understand rainfall patterns in the Telangana subdivision.
-
  
